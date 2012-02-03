@@ -1,0 +1,24 @@
+TARGET = eboot
+EXTRA_TARGETS = EBOOT.PBP
+OBJS = glavnoe.o grafika.o funkcii.o perevod.o ..\ident_prx\newident_prx.o
+
+INCDIR = ../_inc_lib
+CFLAGS = -O2 -G0 -Wall
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS) -c
+
+LIBDIR = ../_inc_lib
+LDFLAGS = -L.
+LIBS = ../_inc_lib/libpspdebug_ru.a
+
+PSP_FW_VERSION = 360
+
+PSP_EBOOT = EBOOT.PBP
+PSP_EBOOT_ICON = ./res/ICON0.PNG
+PSP_EBOOT_PIC1 = ./res/PIC1.PNG
+PSP_EBOOT_TITLE = pspIdent-ng v$(shell ./win/get_date Y).$(shell ./win/get_date W)
+
+BUILD_PRX = 1
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak
